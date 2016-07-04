@@ -7,153 +7,126 @@ block content
     form(class='form-horizontal', method='post', action='/handle_create')
         section(class='form-container title-form')         
             div(class='form-group')
-                label(class='col-sm-1') 素材ID
-                div(class='col-sm-7')
-                    input(type='text', class='form-control', id='api-id', name='api-id', placeholder='素材ID')
+                label(class='col-sm-2') 素材ID
+                div(class='col-sm-10')
+                    input(type='text', class='form-control', name='api-id', placeholder='素材ID')
             div(class='form-group')
-                label(class='col-sm-1') 素材名
-                div(class='col-sm-7')
-                    input(type='text', class='form-control', id='api-name', name='api-name', placeholder='素材名')
+                label(class='col-sm-2') 素材名
+                div(class='col-sm-10')
+                    input(type='text', class='form-control', name='api-name', placeholder='素材名')
 
-        section(class='form-container load-form')        
+        section(class='form-container' id='load-form')
             div(class='form-group')
-                label(class='col-sm-1') 变量1
-                div(class='col-sm-7')
-                    input(type='text', class='form-control', id='var-1', name='var-1', placeholder='变量名')
-            div(class='form-group')
-                label(class='col-sm-1') 变量2
-                div(class='col-sm-7')
-                    input(type='text', class='form-control', id='var-2', name='var-2', placeholder='变量名')
+                label(class='col-sm-2') 变量1
+                div(class='col-sm-10')
+                    input(type='text', class='form-control', name='variable', placeholder='变量名')
+        a(role="button" id='add-load-form' class='btn btn-warning btn-add') 添加变量
 
-        section(class='form-container img-form')     
+        section(class='form-container' id='img-form')     
             div(class='img-item')
                 label 图片1
                 div(class='form-group')
-                    label(class='col-sm-1') 变量名
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='img-name-1', name='img-name-1', placeholder='图片变量名')
+                    label(class='col-sm-2') 变量名
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='img-name', placeholder='图片变量名')
                 div(class='form-group')
-                    label(class='col-sm-1') url
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='img-url-1', name='img-url-1', placeholder='图片url')
-            div(class='img-item')
-                label 图片2
-                div(class='form-group')
-                    label(class='col-sm-1') 变量名
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='img-name-2', name='img-name-2', placeholder='图片变量名')
-                div(class='form-group')
-                    label(class='col-sm-1') url
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='img-url-2', name='img-url-2', placeholder='图片url')
+                    label(class='col-sm-2') url
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='img-url', placeholder='图片url')
+        a(role="button" id='add-img-form' class='btn btn-warning btn-add') 添加图片
 
 
-        section(class='form-container copy-form')     
-            div(class='copy-item-re')
-                label 图片1
-                div(class='form-group')
-                    label(class='col-sm-1') 目的图
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-img-1', name='dest-img-1', placeholder='目的图')
-                div(class='form-group')
-                    label(class='col-sm-1') 源图
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-img-1', name='src-img-1', placeholder='源图')
-                div(class='form-group')
-                    label(class='col-sm-1') 目的x坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-x-1', name='dest-x-1', placeholder='x坐标')
-                div(class='form-group')
-                    label(class='col-sm-1') 目的y坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-y-1', name='dest-y-1', placeholder='y坐标')
-                div(class='form-group')
-                    label(class='col-sm-1') 源x坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-x-1', name='src-x-1', placeholder='x坐标')
-                div(class='form-group')
-                    label(class='col-sm-1') 源y坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-y-1', name='src-y-1', placeholder='y坐标')
-                div(class='form-group')
-                    label(class='col-sm-1') 目的宽度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-width-1', name='dest-width-1', placeholder='目的宽度')
-                div(class='form-group')
-                    label(class='col-sm-1') 目的高度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-height-1', name='dest-height-1', placeholder='目的高度')
-                div(class='form-group')
-                    label(class='col-sm-1') 原宽度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-width-1', name='src-width-1', placeholder='原宽度')
-                div(class='form-group')
-                    label(class='col-sm-1') 原高度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-height-1', name='src-height-1', placeholder='原高度')               
+        section(class='form-container' id='copy-form')     
             div(class='copy-item')
                 label 图片1
                 div(class='form-group')
-                    label(class='col-sm-1') 目的图
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-img-1', name='dest-img-1', placeholder='目的图')
+                    label(class='col-sm-2') 复制方法
+                    div(class='col-sm-10')
+                        select(class='form-control' name='copy-method')
+                            option(value="copyresample") copyresample
+                            option(value="copy") copy
                 div(class='form-group')
-                    label(class='col-sm-1') 源图
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-img-1', name='src-img-1', placeholder='源图')
+                    label(class='col-sm-2') 目标图
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='dest-img', placeholder='目标图')
                 div(class='form-group')
-                    label(class='col-sm-1') 目的x坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-x-1', name='dest-x-1', placeholder='x坐标')
+                    label(class='col-sm-2') 源图
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='src-img', placeholder='源图')
                 div(class='form-group')
-                    label(class='col-sm-1') 目的y坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='dest-y-1', name='dest-y-1', placeholder='y坐标')
+                    label(class='col-sm-2') 目标x坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='dest-x', placeholder='x坐标')
                 div(class='form-group')
-                    label(class='col-sm-1') 源x坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-x-1', name='src-x-1', placeholder='x坐标')
+                    label(class='col-sm-2') 目标y坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='dest-y', placeholder='y坐标')
                 div(class='form-group')
-                    label(class='col-sm-1') 源y坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-y-1', name='src-y-1', placeholder='y坐标')
+                    label(class='col-sm-2') 源x坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='src-x', placeholder='x坐标')
                 div(class='form-group')
-                    label(class='col-sm-1') 原宽度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-width-1', name='src-width-1', placeholder='原宽度')
+                    label(class='col-sm-2') 源y坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='src-y', placeholder='y坐标')
+                div(class='form-group toggle-attr')
+                    label(class='col-sm-2') 目标宽度
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='dest-width', placeholder='目标宽度')
+                div(class='form-group toggle-attr')
+                    label(class='col-sm-2') 目标高度
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='dest-height', placeholder='目标高度')
                 div(class='form-group')
-                    label(class='col-sm-1') 原高度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='src-height-1', name='src-height-1', placeholder='原高度')  
+                    label(class='col-sm-2') 原宽度
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='src-width', placeholder='原宽度')
+                div(class='form-group')
+                    label(class='col-sm-2') 原高度
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='src-height', placeholder='原高度')
+        a(role="button" id='add-copy-form' class='btn btn-warning btn-add') 添加复制
 
 
 
-        section(class='form-container text-form')       
+        section(class='form-container' id='text-form')       
             div(class='text-item')
                 label 文字1
                 div(class='form-group')
-                    label(class='col-sm-1') 文字大小
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='font-size-1', name='font-size-1', placeholder='文字大小')
+                    label(class='col-sm-2') 目标图
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='text-img', placeholder='目标图')
                 div(class='form-group')
-                    label(class='col-sm-1') 文字角度
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='text-angle-1', name='font-angle-1', placeholder='文字角度')
+                    label(class='col-sm-2') 文字大小
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='font-size', placeholder='文字大小')
                 div(class='form-group')
-                    label(class='col-sm-1') x坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='text-x-1', name='text-x-1', placeholder='x坐标')
+                    label(class='col-sm-2') 文字角度
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='font-angle', placeholder='文字角度')
                 div(class='form-group')
-                    label(class='col-sm-1') y坐标
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='text-y-1', name='text-y-1', placeholder='y坐标')
+                    label(class='col-sm-2') x坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='text-x', placeholder='x坐标')
                 div(class='form-group')
-                    label(class='col-sm-1') 颜色
-                    div(class='col-sm-7')
-                        input(type='text', class='form-control', id='text-color-1', name='text-color-1', placeholder='颜色')
-        div(class='form-group')
-            div(class='offset-col-1 offset-col-7')
-                button(type='submit' class='btn btn-default') 生成代码
+                    label(class='col-sm-2') y坐标
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='text-y', placeholder='y坐标')
+                div(class='form-group')
+                    label(class='col-sm-2') 颜色
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='text-color', placeholder='颜色')
+                div(class='form-group')
+                    label(class='col-sm-2') 字体
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='font-family', placeholder='字体')
+                div(class='form-group')
+                    label(class='col-sm-2') 变量名
+                    div(class='col-sm-10')
+                        input(type='text', class='form-control', name='text-name', placeholder='变量名')
+        a(role="button" id='add-text-form' class='btn btn-warning btn-add') 添加文字
+        section(class='form-container' id='submit')
+            button(type='submit' class='btn btn-default btn-submit') 生成代码
         
 
   

@@ -9,12 +9,43 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-header, main {
-	width: 80%;
+main {
+	width: 35%;
 	margin: auto;
 }
 
-.form-container {
-	margin-top: 50px;
+.btn-add {
+	float: right;
 }
 
+@media (max-width: 1270px) {
+	main {
+		width: 50%;
+		margin: auto;
+	}
+}
+
+@media (max-width: 950px) {
+	main {
+		width: 70%;
+		margin: auto;
+	}
+}
+
+// main {
+// 	width: 80%;
+// 	margin: auto;
+// }
+
+.form-container {
+	margin-top: 70px;
+	overflow: hidden;
+}
+
+#submit {
+	text-align: center;
+}
+
+.btn-submit {
+	width: 40%;
+}
