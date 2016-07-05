@@ -3,17 +3,21 @@ $(document).ready(function() {
 	var $addImg = $('#add-img-form');
 	var $addCopy = $('#add-copy-form');
 	var $addText = $('#add-text-form');
+	var $deleteLoad = $('#delete-load-form');
+	var $deleteImg = $('#delete-img-form');
+	var $deleteCopy = $('#delete-copy-form');
+	var $deleteText = $('#delete-text-form');
 	var $loadForm = $('#load-form');
 	var $imgForm = $('#img-form');
 	var $copyForm = $('#copy-form');
 	var $textForm = $('#text-form');
 
 	$addLoad.on('click', function() {
-		$newForm = $loadForm.children().first().clone(true).hide();
+		$newForm = $loadForm.children().last().clone(true).hide();
 		$count = $loadForm.children().length;
 		// $newForm.children[0].innerText = '变量'+($count+1);
 		// $newForm.hide();
-		$newForm.children().first().text('变量'+($count+1));
+		$newForm.children().first().text('变量'+($count));
 		$loadForm.append($newForm);
 		$newForm.fadeIn();
 	});
@@ -21,7 +25,7 @@ $(document).ready(function() {
 	$addImg.on('click', function() {
 		$newForm = $imgForm.children().first().clone(true).hide();
 		$count = $imgForm.children().length;
-		$newForm.children().first().text('图片'+($count+1));
+		$newForm.children().first().children().text('图片'+($count+1));
 		$imgForm.append($newForm);
 		$newForm.fadeIn();
 	});
@@ -29,7 +33,7 @@ $(document).ready(function() {
 	$addCopy.on('click', function() {
 		$newForm = $copyForm.children().first().clone(true).hide();
 		$count = $copyForm.children().length;
-		$newForm.children().first().text('图片复制'+($count+1));
+		$newForm.children().first().children().text('图片复制'+($count+1));
 		$copyForm.append($newForm);
 		$newForm.fadeIn();
 	});
@@ -37,7 +41,7 @@ $(document).ready(function() {
 	$addText.on('click', function() {
 		$newForm = $textForm.children().first().clone(true).hide();
 		$count = $textForm.children().length;
-		$newForm.children().first().text('文字'+($count+1));
+		$newForm.children().first().children().text('文字'+($count+1));
 		$textForm.append($newForm);
 		$newForm.fadeIn();
 	});

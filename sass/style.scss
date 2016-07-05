@@ -14,8 +14,9 @@ main {
 	margin: auto;
 }
 
-.btn-add {
+.btn-add, .btn-delete {
 	float: right;
+	margin-left: 20px;
 }
 
 @media (max-width: 1270px) {
@@ -40,6 +41,12 @@ main {
 .form-container {
 	margin-top: 70px;
 	overflow: hidden;
+}
+
+.item-title {
+	overflow: hidden;
+	margin-bottom: 13px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #submit {
