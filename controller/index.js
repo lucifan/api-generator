@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var os = require('os');
 
 
 getData = function(req, res, variables, imgs, copys, texts) {
@@ -16,9 +17,16 @@ getData = function(req, res, variables, imgs, copys, texts) {
         })
     } else {
         for (var i = 0; i < req.body['img-name'].length; i++) {
+            var type = req.body['img-url'][i].split('.')
+            if (type[type.length-1] == 'png') {
+                type = 'png';
+            } else {
+                type = 'jpeg';
+            }
             imgs.push({
                 name : req.body['img-name'][i],
-                url : req.body['img-url'][i]
+                url : req.body['img-url'][i],
+                type : type
             });
         }   
     }
@@ -111,27 +119,44 @@ getData = function(req, res, variables, imgs, copys, texts) {
 }
 
 outputCode = function(apiId, apiName, variables, imgs, copys, texts) {
-
-    // fs.writeFile('apiId.php', 'what happen', function(err) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log("output succeed!");
-    //     }
-    // });
-
-    fs.readFile('apiId.php', 'utf-8', function (err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(data);
-        }
+    var fWrite = fs.createWriteStream('public/output/'+apiId+'.php', {
+        flags: 'a',
+        defaultEncoding: 'utf8',
+        autoClose: true
     });
-
+    fWrite.write('<?php' + os.EOL);
+    for (var i = 0; i < variables.length; i++) {
+        fWrite.write('    $'+variables[i]+' = trim(mb_convert_encoding($data->'+
+            variables[i]+', "UTF-8", "auto"));' + os.EOL);
+    }
+    for (var i = 0; i < imgs.length; i++) {
+        fWrite.write("    $"+imgs[i].name+" = imagecreatefrom"+imgs[i].type+"('"+imgs[i].url+"');" + os.EOL);
+    }
+    for (var i = 0; i < texts.length; i++) {
+        console.log(texts[i].textImg);
+        fWrite.write('    ImageTTFText($'+texts[i].textImg+','+texts[i].fontSize+
+            ','+texts[i].fontAngle+','+texts[i].textX+','+texts[i].textY+
+            ',ImageColorAllocate($'+texts[i].textImg+','+texts[i].color+
+            '),\'font/'+texts[i].fontFamily+'.ttf\',$'+texts[i].textName+
+            ');' + os.EOL);
+    }
+    fWrite.write("    $savename = $type.$md5_name.$log_date.'.png';" + os.EOL);
+    fWrite.write("    $savefile = $save_path.$savename;" + os.EOL);
+    fWrite.write("    imagepng($im,$savefile);" + os.EOL);
+    fWrite.write("    imagedestroy($im);" + os.EOL);
+    fWrite.end("    exit(json_encode(array('code'=>1,'name'=>$name.'"+
+        apiName+"','key'=>$save_path.$savename,'url'=>$serverHost.$save_path.$savename)));" + os.EOL);
+    // var fWrite = fs.createWriteStream('public/output/apiId.php', {
+    //     flags: 'a',
+    //     defaultEncoding: 'utf8',
+    // });
+    // fWrite.write('this is what you got, hum?' + os.EOL);
+    // fWrite.write('well tell me what you got' + os.EOL);
+    // fWrite.close();
 }
 
 exports.showIndex = function(req, res) {
-    res.render('index', { title: '素材代码自动生成' });
+    res.render('index', { title: '素材接口生成器' });
 };
 
 exports.createCode = function(req, res) {
@@ -142,7 +167,7 @@ exports.createCode = function(req, res) {
     var copys = [];
     var texts = [];
     getData(req, res, variables, imgs, copys, texts);
-    outputCode(apiId, apiName, variables, imgs, copys, texts);
+    // outputCode(apiId, apiName, variables, imgs, copys, texts);
     res.json({
         'apiId' : apiId,
         'apiName' : apiName,
